@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workout Planner - FitHub</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-                <a href="index.html">FitHub</a>
+                <a href="/" class="nav-link">FitHub</a>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="/" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="videos.html" class="nav-link">Video Library</a>
+                    <a href="/videos.html" class="nav-link">Video Library</a>
                 </li>
                 <li class="nav-item">
-                    <a href="workout-planner.html" class="nav-link active">Workout Planner</a>
+                    <a href="/workout-planner.html" class="nav-link active">Workout Planner</a>
                 </li>
                 <li class="nav-item">
-                    <a href="profile.html" class="nav-link">Profile</a>
+                    <a href="/profile.html" class="nav-link">Profile</a>
                 </li>
             </ul>
             <div class="nav-auth">
@@ -32,6 +32,35 @@
             </div>
         </div>
     </nav>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Login to FitHub</h2>
+            <form id="login-form">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign up here</a></p>
+        </div>
+    </div>
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+            <h2>Create Your FitHub Account</h2>
+            <form id="signup-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
+        </div>
+    </div>
 
     <main>
         <section class="planner-section">
@@ -104,7 +133,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="workout-planner.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='workout-planner.js') }}"></script>
 </body>
 </html>

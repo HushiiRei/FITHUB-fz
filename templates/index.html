@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitHub - Your Fitness Streaming Platform</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-                <a href="index.html">FitHub</a>
+                <a href="/" class="nav-link">FitHub</a>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="/" class="nav-link active">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="videos.html" class="nav-link">Video Library</a>
+                    <a href="/videos.html" class="nav-link">Video Library</a>
                 </li>
                 <li class="nav-item">
-                    <a href="workout-planner.html" class="nav-link">Workout Planner</a>
+                    <a href="/workout-planner.html" class="nav-link">Workout Planner</a>
                 </li>
                 <li class="nav-item">
-                    <a href="profile.html" class="nav-link">Profile</a>
+                    <a href="/profile.html" class="nav-link">Profile</a>
                 </li>
             </ul>
             <div class="nav-auth">
@@ -124,6 +124,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
