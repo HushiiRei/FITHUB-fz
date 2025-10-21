@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Planner - FitHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="index.html">FitHub</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="videos.html" class="nav-link">Video Library</a>
+                </li>
+                <li class="nav-item">
+                    <a href="workout-planner.html" class="nav-link active">Workout Planner</a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">Profile</a>
+                </li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-login" onclick="openLoginModal()">Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="planner-section">
+            <div class="container">
+                <h1>Workout Planner</h1>
+                
+                <div class="planner-layout">
+                    <!-- Workouts List -->
+                    <div class="workouts-list">
+                        <h2>My Workouts</h2>
+                        <button class="btn-primary" onclick="openCreateWorkoutModal()">Create New Workout</button>
+                        <div id="workouts-container">
+                            <!-- Workouts will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Workout Editor -->
+                    <div class="workout-editor">
+                        <h2>Workout Details</h2>
+                        <div id="workout-editor-content">
+                            <p>Select a workout to edit or create a new one</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Create Workout Modal -->
+    <div id="create-workout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCreateWorkoutModal()">&times;</span>
+            <h2>Create New Workout</h2>
+            <form id="create-workout-form">
+                <input type="text" id="workout-name" placeholder="Workout Name" required>
+                <textarea id="workout-description" placeholder="Description" rows="3"></textarea>
+                <select id="workout-difficulty" required>
+                    <option value="">Select Difficulty</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+                <input type="number" id="workout-duration" placeholder="Duration (minutes)" required>
+                <button type="submit" class="btn-primary">Create Workout</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Exercise Modal -->
+    <div id="add-exercise-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddExerciseModal()">&times;</span>
+            <h2>Add Exercise to Workout</h2>
+            <form id="add-exercise-form">
+                <select id="exercise-select" required>
+                    <option value="">Select an Exercise</option>
+                    <!-- Exercises will be loaded here -->
+                </select>
+                <input type="number" id="exercise-sets" placeholder="Sets" value="3" required>
+                <input type="number" id="exercise-reps" placeholder="Reps" value="10" required>
+                <input type="number" id="exercise-rest" placeholder="Rest (seconds)" value="60" required>
+                <button type="submit" class="btn-primary">Add Exercise</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FitHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="workout-planner.js"></script>
+</body>
+</html>

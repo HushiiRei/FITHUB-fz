@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Library - FitHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="index.html">FitHub</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="videos.html" class="nav-link active">Video Library</a>
+                </li>
+                <li class="nav-item">
+                    <a href="workout-planner.html" class="nav-link">Workout Planner</a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">Profile</a>
+                </li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-login" onclick="openLoginModal()">Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="videos-section">
+            <div class="container">
+                <h1>Video Library</h1>
+                
+                <!-- Filters -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="category-filter">Category:</label>
+                        <select id="category-filter" onchange="applyFilters()">
+                            <option value="">All Categories</option>
+                            <option value="Full Body">Full Body</option>
+                            <option value="Cardio">Cardio</option>
+                            <option value="Strength">Strength</option>
+                            <option value="Yoga">Yoga</option>
+                            <option value="Core">Core</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="difficulty-filter">Difficulty:</label>
+                        <select id="difficulty-filter" onchange="applyFilters()">
+                            <option value="">All Levels</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <input type="text" id="search-input" placeholder="Search videos..." onkeyup="applyFilters()">
+                    </div>
+                </div>
+
+                <!-- Video Grid -->
+                <div class="video-grid" id="videos-grid">
+                    <!-- Videos will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close" onclick="closeVideoModal()">&times;</span>
+            <div class="video-player">
+                <iframe id="video-iframe" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-details">
+                <h2 id="video-title"></h2>
+                <p id="video-description"></p>
+                <div class="video-meta">
+                    <span id="video-instructor"></span>
+                    <span id="video-duration"></span>
+                    <span id="video-difficulty"></span>
+                </div>
+                <button class="btn-secondary" id="favorite-btn" onclick="toggleFavorite()">Add to Favorites</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FitHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="videos.js"></script>
+</body>
+</html>

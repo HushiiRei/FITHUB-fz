@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitHub - Your Fitness Streaming Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="index.html">FitHub</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="videos.html" class="nav-link">Video Library</a>
+                </li>
+                <li class="nav-item">
+                    <a href="workout-planner.html" class="nav-link">Workout Planner</a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">Profile</a>
+                </li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-login" onclick="openLoginModal()">Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Transform Your Fitness Journey</h1>
+                <p>Stream professional fitness videos and create personalized workout plans</p>
+                <button class="btn-primary" onclick="openSignupModal()">Get Started</button>
+            </div>
+        </section>
+
+        <!-- Featured Videos Section -->
+        <section class="featured-section">
+            <div class="container">
+                <h2>Featured Workouts</h2>
+                <div class="video-grid" id="featured-videos">
+                    <!-- Videos will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <div class="container">
+                <h2>Browse by Category</h2>
+                <div class="categories-grid">
+                    <div class="category-card" onclick="filterByCategory('Full Body')">
+                        <div class="category-icon">💪</div>
+                        <h3>Full Body</h3>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('Cardio')">
+                        <div class="category-icon">🏃</div>
+                        <h3>Cardio</h3>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('Strength')">
+                        <div class="category-icon">🏋️</div>
+                        <h3>Strength</h3>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('Yoga')">
+                        <div class="category-icon">🧘</div>
+                        <h3>Yoga</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Start Your Fitness Journey?</h2>
+                <p>Join thousands of users achieving their fitness goals with FitHub</p>
+                <button class="btn-primary" onclick="openSignupModal()">Sign Up Now</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Login to FitHub</h2>
+            <form id="login-form">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign up here</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+            <h2>Create Your FitHub Account</h2>
+            <form id="signup-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FitHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

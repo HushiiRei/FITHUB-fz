@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - FitHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="index.html">FitHub</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="videos.html" class="nav-link">Video Library</a>
+                </li>
+                <li class="nav-item">
+                    <a href="workout-planner.html" class="nav-link">Workout Planner</a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link active">Profile</a>
+                </li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="profile-section">
+            <div class="container">
+                <div class="profile-layout">
+                    <!-- Profile Card -->
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <img id="profile-avatar" src="https://via.placeholder.com/150" alt="Profile Avatar" class="profile-avatar">
+                            <div class="profile-info">
+                                <h1 id="profile-name"></h1>
+                                <p id="profile-username"></p>
+                                <p id="profile-bio"></p>
+                            </div>
+                        </div>
+                        <button class="btn-secondary" onclick="openEditProfileModal()">Edit Profile</button>
+                    </div>
+
+                    <!-- Favorites Section -->
+                    <div class="favorites-section">
+                        <h2>Favorite Videos</h2>
+                        <div class="video-grid" id="favorites-grid">
+                            <!-- Favorite videos will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditProfileModal()">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="edit-profile-form">
+                <input type="text" id="edit-full-name" placeholder="Full Name" required>
+                <textarea id="edit-bio" placeholder="Bio" rows="3"></textarea>
+                <input type="url" id="edit-avatar" placeholder="Avatar URL">
+                <button type="submit" class="btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FitHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>
