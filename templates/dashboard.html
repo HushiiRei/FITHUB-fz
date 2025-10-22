@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FitHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="/" class="nav-link">FitHub</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/dashboard" class="nav-link active">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/videos" class="nav-link">Videos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/planner" class="nav-link">Planner</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/profile" class="nav-link">Profile</a>
+                </li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content dashboard">
+            <!-- Motivational Quote Banner -->
+            <section class="motivational-banner">
+                <div class="container">
+                    <div class="quote-content">
+                        <h2>"The only bad workout is the one that didn't happen."</h2>
+                        <p>- Fitness Proverb</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Cards -->
+            <section class="stats-section">
+                <div class="container">
+                    <h2>Your Progress</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🔥</div>
+                            <div class="stat-content">
+                                <h3>Calories Burned</h3>
+                                <div class="stat-value">1,247</div>
+                                <span class="stat-period">This week</span>
+                            </div>
+                            <div class="progress-circle">
+                                <svg width="80" height="80">
+                                    <circle cx="40" cy="40" r="35" stroke="#333" stroke-width="5" fill="none"/>
+                                    <circle cx="40" cy="40" r="35" stroke="#b066ff" stroke-width="5" fill="none"
+                                            stroke-dasharray="219.91" stroke-dashoffset="65.97"/>
+                                </svg>
+                                <span class="progress-text">70%</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💪</div>
+                            <div class="stat-content">
+                                <h3>Workouts Completed</h3>
+                                <div class="stat-value">12</div>
+                                <span class="stat-period">This month</span>
+                            </div>
+                            <div class="progress-circle">
+                                <svg width="80" height="80">
+                                    <circle cx="40" cy="40" r="35" stroke="#333" stroke-width="5" fill="none"/>
+                                    <circle cx="40" cy="40" r="35" stroke="#6a0dad" stroke-width="5" fill="none"
+                                            stroke-dasharray="219.91" stroke-dashoffset="87.96"/>
+                                </svg>
+                                <span class="progress-text">60%</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-content">
+                                <h3>Goals Achieved</h3>
+                                <div class="stat-value">8</div>
+                                <span class="stat-period">This year</span>
+                            </div>
+                            <div class="progress-circle">
+                                <svg width="80" height="80">
+                                    <circle cx="40" cy="40" r="35" stroke="#333" stroke-width="5" fill="none"/>
+                                    <circle cx="40" cy="40" r="35" stroke="#b066ff" stroke-width="5" fill="none"
+                                            stroke-dasharray="219.91" stroke-dashoffset="43.98"/>
+                                </svg>
+                                <span class="progress-text">80%</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-content">
+                                <h3>Active Streak</h3>
+                                <div class="stat-value">7</div>
+                                <span class="stat-period">Days</span>
+                            </div>
+                            <div class="progress-circle">
+                                <svg width="80" height="80">
+                                    <circle cx="40" cy="40" r="35" stroke="#333" stroke-width="5" fill="none"/>
+                                    <circle cx="40" cy="40" r="35" stroke="#6a0dad" stroke-width="5" fill="none"
+                                            stroke-dasharray="219.91" stroke-dashoffset="131.95"/>
+                                </svg>
+                                <span class="progress-text">40%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Water Intake Tracker -->
+            <section class="water-tracker-section">
+                <div class="container">
+                    <h2>Water Intake Tracker</h2>
+                    <div class="water-tracker">
+                        <div class="water-display">
+                            <div class="water-icon">💧</div>
+                            <div class="water-info">
+                                <div class="water-amount" id="water-amount">0</div>
+                                <span class="water-unit">glasses</span>
+                                <div class="water-goal">Goal: 8 glasses</div>
+                            </div>
+                        </div>
+                        <div class="water-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="water-progress"></div>
+                            </div>
+                            <span class="progress-text" id="water-percentage">0%</span>
+                        </div>
+                        <div class="water-controls">
+                            <button class="water-btn" onclick="addWater(1)">+1 Glass</button>
+                            <button class="water-btn" onclick="addWater(-1)">-1 Glass</button>
+                            <button class="water-btn reset" onclick="resetWater()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="activity-section">
+                <div class="container">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🏃</div>
+                            <div class="activity-content">
+                                <h4>Completed HIIT Cardio Blast</h4>
+                                <span>45 minutes • 320 calories burned</span>
+                            </div>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">💪</div>
+                            <div class="activity-content">
+                                <h4>Strength Training Session</h4>
+                                <span>60 minutes • Upper body focus</span>
+                            </div>
+                            <span class="activity-time">Yesterday</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🧘</div>
+                            <div class="activity-content">
+                                <h4>Yoga Flow for Stress Relief</h4>
+                                <span>30 minutes • Mindfulness practice</span>
+                            </div>
+                            <span class="activity-time">2 days ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🏊</div>
+                            <div class="activity-content">
+                                <h4>Swimming Cardio</h4>
+                                <span>40 minutes • 280 calories burned</span>
+                            </div>
+                            <span class="activity-time">3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions-section">
+                <div class="container">
+                    <h2>Quick Actions</h2>
+                    <div class="quick-actions-grid">
+                        <button class="quick-action-btn">
+                            <span class="action-icon">▶️</span>
+                            <span>Start Workout</span>
+                        </button>
+                        <button class="quick-action-btn">
+                            <span class="action-icon">📅</span>
+                            <span>Plan Workout</span>
+                        </button>
+                        <button class="quick-action-btn">
+                            <span class="action-icon">🎬</span>
+                            <span>Browse Videos</span>
+                        </button>
+                        <button class="quick-action-btn">
+                            <span class="action-icon">📊</span>
+                            <span>View Progress</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

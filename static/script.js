@@ -250,6 +250,52 @@ function filterByCategory(category) {
   window.location.href = `videos.html?category=${encodeURIComponent(category)}`
 }
 
+// ==================== WATER INTAKE TRACKER ====================
+
+// Water intake state
+let waterIntake = 0
+const waterGoal = 8
+
+// Initialize water intake from localStorage
+function initializeWaterIntake() {
+  const stored = localStorage.getItem("waterIntake")
+  if (stored) {
+    waterIntake = parseInt(stored)
+  }
+  updateWaterDisplay()
+}
+
+// Update water display
+function updateWaterDisplay() {
+  const amountEl = document.getElementById("water-amount")
+  const progressEl = document.getElementById("water-progress")
+  const percentageEl = document.getElementById("water-percentage")
+
+  if (amountEl) {
+    amountEl.textContent = waterIntake
+  }
+
+  if (progressEl && percentageEl) {
+    const percentage = Math.min((waterIntake / waterGoal) * 100, 100)
+    progressEl.style.width = `${percentage}%`
+    percentageEl.textContent = `${Math.round(percentage)}%`
+  }
+}
+
+// Add water intake
+function addWater(amount) {
+  waterIntake = Math.max(0, waterIntake + amount)
+  localStorage.setItem("waterIntake", waterIntake)
+  updateWaterDisplay()
+}
+
+// Reset water intake
+function resetWater() {
+  waterIntake = 0
+  localStorage.setItem("waterIntake", waterIntake)
+  updateWaterDisplay()
+}
+
 // ==================== INITIALIZATION ====================
 
 // Initialize on page load
@@ -260,5 +306,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load featured videos if on home page
   if (document.getElementById("featured-videos")) {
     loadFeaturedVideos()
+  }
+
+  // Initialize water tracker if on dashboard
+  if (document.querySelector(".water-tracker")) {
+    initializeWaterIntake()
   }
 })

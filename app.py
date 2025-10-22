@@ -16,15 +16,19 @@ CORS(app)
 def home_page():
     return render_template('index.html')
 
-@app.route('/videos.html')
-def videos_page():
-    return render_template('videos.html')
+@app.route('/dashboard')
+def dashboard_page():
+    return render_template('dashboard.html')
 
-@app.route('/workout-planner.html')
+@app.route('/videos')
+def video_library_page():
+    return render_template('video-library.html')
+
+@app.route('/planner')
 def workout_planner_page():
     return render_template('workout-planner.html')
 
-@app.route('/profile.html')
+@app.route('/profile')
 def profile_page():
     return render_template('profile.html')
 

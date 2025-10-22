@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Library - FitHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="/">FitHub</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="/videos" class="nav-link active">Videos</a></li>
+                <li><a href="/planner" class="nav-link">Planner</a></li>
+                <li><a href="/profile" class="nav-link">Profile</a></li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-login" onclick="openLoginModal()">Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search and Filters Section -->
+    <section class="video-search-section">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" id="video-search" class="search-bar" placeholder="Search workouts, trainers, or categories...">
+                <button class="btn-search">🔍</button>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-category="all">All</button>
+                <button class="filter-tab" data-category="cardio">Cardio</button>
+                <button class="filter-tab" data-category="strength">Strength</button>
+                <button class="filter-tab" data-category="yoga">Yoga</button>
+                <button class="filter-tab" data-category="hiit">HIIT</button>
+                <button class="filter-tab" data-category="pilates">Pilates</button>
+                <button class="filter-tab" data-category="boxing">Boxing</button>
+                <button class="filter-tab" data-category="swimming">Swimming</button>
+            </div>
+
+            <!-- Additional Filters -->
+            <div class="advanced-filters">
+                <div class="filter-group">
+                    <label>Difficulty:</label>
+                    <select id="difficulty-filter" class="filter-select">
+                        <option value="all">All Levels</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Duration:</label>
+                    <select id="duration-filter" class="filter-select">
+                        <option value="all">Any Length</option>
+                        <option value="short">Under 20 min</option>
+                        <option value="medium">20-45 min</option>
+                        <option value="long">Over 45 min</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Sort by:</label>
+                    <select id="sort-filter" class="filter-select">
+                        <option value="popular">Most Popular</option>
+                        <option value="newest">Newest</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="duration">Duration</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Library Section -->
+    <section class="video-library-section">
+        <div class="container">
+            <div class="library-header">
+                <h1>Video Library</h1>
+                <span id="video-count">Showing 24 workouts</span>
+            </div>
+
+            <div class="video-grid" id="video-grid">
+                <!-- Video Cards -->
+                <div class="video-card" data-category="cardio" data-difficulty="intermediate" data-duration="medium">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">35 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>High-Intensity Cardio Blast</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Sarah Johnson</span>
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.8</span>
+                            <span>👁️ 2.3k views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="strength" data-difficulty="beginner" data-duration="long">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">60 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Strength Training Fundamentals</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Mike Chen</span>
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.9</span>
+                            <span>👁️ 1.8k views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="yoga" data-difficulty="beginner" data-duration="medium">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">30 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Yoga Flow for Stress Relief</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Emma Davis</span>
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.7</span>
+                            <span>👁️ 3.1k views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="strength" data-difficulty="advanced" data-duration="long">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">75 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Advanced Full Body Workout</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Alex Rodriguez</span>
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.6</span>
+                            <span>👁️ 1.5k views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="hiit" data-difficulty="intermediate" data-duration="short">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">25 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>HIIT Burnout Session</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Lisa Wong</span>
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.8</span>
+                            <span>👁️ 2.7k views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="pilates" data-difficulty="intermediate" data-duration="medium">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">40 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Pilates Core Strength</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">David Kim</span>
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.5</span>
+                            <span>👁️ 1.9k views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="boxing" data-difficulty="beginner" data-duration="medium">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">45 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Boxing Fundamentals</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Carlos Martinez</span>
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.7</span>
+                            <span>👁️ 2.1k views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="swimming" data-difficulty="intermediate" data-duration="medium">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">50 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Swimming Techniques</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Rachel Green</span>
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.4</span>
+                            <span>👁️ 1.2k views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="yoga" data-difficulty="advanced" data-duration="long">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">90 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Advanced Yoga Flow</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Priya Patel</span>
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.9</span>
+                            <span>👁️ 950 views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="cardio" data-difficulty="beginner" data-duration="short">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">20 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Beginner Cardio Warm-up</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Tom Wilson</span>
+                            <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.6</span>
+                            <span>👁️ 3.2k views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="strength" data-difficulty="intermediate" data-duration="medium">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">45 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Upper Body Strength</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Jessica Brown</span>
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.8</span>
+                            <span>👁️ 2.4k views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="hiit" data-difficulty="advanced" data-duration="short">
+                    <div class="video-thumbnail">
+                        <div class="play-overlay">▶</div>
+                        <div class="video-duration">15 min</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Extreme HIIT Challenge</h3>
+                        <div class="video-meta">
+                            <span class="trainer-name">Marcus Johnson</span>
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                        </div>
+                        <div class="video-stats">
+                            <span>⭐ 4.7</span>
+                            <span>👁️ 1.7k views</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="btn-secondary" id="load-more-btn">Load More Videos</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

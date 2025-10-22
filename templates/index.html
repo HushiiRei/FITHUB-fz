@@ -3,28 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitHub - Your Fitness Streaming Platform</title>
+    <title>FitHub - Train Smarter. Track Better. Stay Fit.</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-                <a href="/" class="nav-link">FitHub</a>
+                <a href="/">FitHub</a>
             </div>
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="/" class="nav-link active">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/videos.html" class="nav-link">Video Library</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/workout-planner.html" class="nav-link">Workout Planner</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/profile.html" class="nav-link">Profile</a>
-                </li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#trainers" class="nav-link">Trainers</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="nav-auth">
                 <button class="btn-login" onclick="openLoginModal()">Login</button>
@@ -33,60 +28,220 @@
         </div>
     </nav>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
             <div class="hero-content">
-                <h1>Transform Your Fitness Journey</h1>
-                <p>Stream professional fitness videos and create personalized workout plans</p>
-                <button class="btn-primary" onclick="openSignupModal()">Get Started</button>
-            </div>
-        </section>
-
-        <!-- Featured Videos Section -->
-        <section class="featured-section">
-            <div class="container">
-                <h2>Featured Workouts</h2>
-                <div class="video-grid" id="featured-videos">
-                    <!-- Videos will be loaded here -->
+                <h1>Train Smarter.<br>Track Better.<br>Stay Fit.</h1>
+                <p>Transform your body and mind with personalized workouts, expert guidance, and cutting-edge fitness technology.</p>
+                <div class="hero-buttons">
+                    <a href="/dashboard" class="btn-primary">Join Now</a>
+                    <a href="/videos" class="btn-secondary">Explore Workouts</a>
                 </div>
             </div>
-        </section>
+            <div class="hero-visual">
+                <div class="hero-silhouette"></div>
+            </div>
+        </div>
+        <div class="hero-bg-gradient"></div>
+    </section>
 
-        <!-- Categories Section -->
-        <section class="categories-section">
-            <div class="container">
-                <h2>Browse by Category</h2>
-                <div class="categories-grid">
-                    <div class="category-card" onclick="filterByCategory('Full Body')">
-                        <div class="category-icon">💪</div>
-                        <h3>Full Body</h3>
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2>Why Choose FitHub?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Personalized Workouts</h3>
+                    <p>AI-powered workout plans tailored to your fitness level, goals, and schedule.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📹</div>
+                    <h3>Video Tutorials</h3>
+                    <p>High-quality video content with expert trainers guiding you through every exercise.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your fitness journey with detailed analytics and achievement badges.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Fitness Plans</h3>
+                    <p>Structured programs for weight loss, muscle gain, endurance, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community Support</h3>
+                    <p>Connect with like-minded fitness enthusiasts and share your progress.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile App</h3>
+                    <p>Access your workouts anywhere with our seamless mobile experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section id="trainers" class="trainers-section">
+        <div class="container">
+            <h2>Meet Our Expert Trainers</h2>
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <div class="trainer-image">
+                        <div class="trainer-placeholder">SJ</div>
                     </div>
-                    <div class="category-card" onclick="filterByCategory('Cardio')">
-                        <div class="category-icon">🏃</div>
-                        <h3>Cardio</h3>
+                    <h3>Sarah Johnson</h3>
+                    <p>HIIT & Cardio Specialist</p>
+                    <div class="trainer-specialties">
+                        <span>HIIT</span>
+                        <span>Cardio</span>
+                        <span>Weight Loss</span>
                     </div>
-                    <div class="category-card" onclick="filterByCategory('Strength')">
-                        <div class="category-icon">🏋️</div>
-                        <h3>Strength</h3>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-image">
+                        <div class="trainer-placeholder">MC</div>
                     </div>
-                    <div class="category-card" onclick="filterByCategory('Yoga')">
-                        <div class="category-icon">🧘</div>
-                        <h3>Yoga</h3>
+                    <h3>Mike Chen</h3>
+                    <p>Yoga & Mindfulness Expert</p>
+                    <div class="trainer-specialties">
+                        <span>Yoga</span>
+                        <span>Mindfulness</span>
+                        <span>Flexibility</span>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-image">
+                        <div class="trainer-placeholder">AR</div>
+                    </div>
+                    <h3>Alex Rodriguez</h3>
+                    <p>Strength & Conditioning Coach</p>
+                    <div class="trainer-specialties">
+                        <span>Strength</span>
+                        <span>Powerlifting</span>
+                        <span>Bodybuilding</span>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-image">
+                        <div class="trainer-placeholder">ED</div>
+                    </div>
+                    <h3>Emma Davis</h3>
+                    <p>Nutrition & Wellness Coach</p>
+                    <div class="trainer-specialties">
+                        <span>Nutrition</span>
+                        <span>Wellness</span>
+                        <span>Holistic Health</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="container">
-                <h2>Ready to Start Your Fitness Journey?</h2>
-                <p>Join thousands of users achieving their fitness goals with FitHub</p>
-                <button class="btn-primary" onclick="openSignupModal()">Sign Up Now</button>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <h2>What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"FitHub completely transformed my fitness journey. The personalized workouts and expert guidance helped me lose 30 pounds and gain confidence!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>John Doe</h4>
+                            <span>Lost 30 lbs in 6 months</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The video tutorials are amazing! I love how I can follow along with professional trainers from the comfort of my home."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JS</div>
+                        <div class="author-info">
+                            <h4>Jane Smith</h4>
+                            <span>Marathon Runner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"FitHub's progress tracking keeps me motivated. Seeing my improvements week by week is incredibly rewarding."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MB</div>
+                        <div class="author-info">
+                            <h4>Mike Brown</h4>
+                            <span>Gained 15 lbs muscle</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Fitness Journey?</h2>
+            <p>Join thousands of users who have transformed their lives with FitHub.</p>
+            <a href="/dashboard" class="btn-primary">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FitHub</h3>
+                    <p>Train Smarter. Track Better. Stay Fit.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">💼</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#trainers">Trainers</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with the latest fitness tips and features.</p>
+                    <div class="newsletter-signup">
+                        <input type="email" placeholder="Enter your email">
+                        <button class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FitHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Login Modal -->
     <div id="login-modal" class="modal">
@@ -117,12 +272,6 @@
             <p>Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
         </div>
     </div>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 FitHub. All rights reserved.</p>
-        </div>
-    </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

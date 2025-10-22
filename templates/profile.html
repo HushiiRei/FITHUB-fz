@@ -5,112 +5,416 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - FitHub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-                <a href="/" class="nav-link">FitHub</a>
+                <a href="/">FitHub</a>
             </div>
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/videos.html" class="nav-link">Video Library</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/workout-planner.html" class="nav-link">Workout Planner</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/profile.html" class="nav-link active">Profile</a>
-                </li>
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="/videos" class="nav-link">Videos</a></li>
+                <li><a href="/planner" class="nav-link">Planner</a></li>
+                <li><a href="/profile" class="nav-link active">Profile</a></li>
             </ul>
             <div class="nav-auth">
-                <button class="btn-logout" onclick="logout()">Logout</button>
+                <button class="btn-login" onclick="openLoginModal()">Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
             </div>
         </div>
     </nav>
 
-    <!-- Login Modal -->
-    <div id="login-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeLoginModal()">&times;</span>
-            <h2>Login to FitHub</h2>
-            <form id="login-form">
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit" class="btn-primary">Login</button>
-            </form>
-            <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign up here</a></p>
+    <!-- Profile Header -->
+    <section class="profile-header-section">
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="/static/images/profile-avatar.png" alt="Profile Avatar">
+                    <button class="edit-avatar-btn">📷</button>
+                </div>
+                <div class="profile-info">
+                    <h1>Alex Rodriguez</h1>
+                    <div class="fitness-level">
+                        <span class="level-badge advanced">Advanced</span>
+                        <span class="level-points">2,450 XP</span>
+                    </div>
+                    <p class="member-since">Member since January 2024</p>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn-secondary">Edit Profile</button>
+                    <button class="btn-primary">Share Progress</button>
+                </div>
+            </div>
         </div>
-    </div>
-    <!-- Signup Modal -->
-    <div id="signup-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeSignupModal()">&times;</span>
-            <h2>Create Your FitHub Account</h2>
-            <form id="signup-form">
-                <input type="text" placeholder="Full Name" required>
-                <input type="text" placeholder="Username" required>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit" class="btn-primary">Sign Up</button>
-            </form>
-            <p>Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
-        </div>
-    </div>
+    </section>
 
-    <main>
-        <section class="profile-section">
-            <div class="container">
-                <div class="profile-layout">
-                    <!-- Profile Card -->
-                    <div class="profile-card">
-                        <div class="profile-header">
-                            <img id="profile-avatar" src="https://via.placeholder.com/150" alt="Profile Avatar" class="profile-avatar">
-                            <div class="profile-info">
-                                <h1 id="profile-name"></h1>
-                                <p id="profile-username"></p>
-                                <p id="profile-bio"></p>
+    <!-- Stats Overview -->
+    <section class="stats-overview-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🏋️</div>
+                    <div class="stat-content">
+                        <h3>Total Workouts</h3>
+                        <div class="stat-value">127</div>
+                        <span class="stat-change positive">+12 this month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-content">
+                        <h3>Calories Burned</h3>
+                        <div class="stat-value">45,230</div>
+                        <span class="stat-change positive">+3,420 this month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-content">
+                        <h3>Active Streak</h3>
+                        <div class="stat-value">14</div>
+                        <span class="stat-change positive">days</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-content">
+                        <h3>Achievements</h3>
+                        <div class="stat-value">23</div>
+                        <span class="stat-change">unlocked</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Tabs -->
+    <section class="profile-tabs-section">
+        <div class="container">
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="personal">Personal Info</button>
+                <button class="tab-btn" data-tab="achievements">Achievements</button>
+                <button class="tab-btn" data-tab="history">Workout History</button>
+                <button class="tab-btn" data-tab="settings">Settings</button>
+            </div>
+
+            <!-- Personal Info Tab -->
+            <div id="personal-tab" class="tab-content active">
+                <div class="personal-info-grid">
+                    <div class="info-card">
+                        <h3>Basic Information</h3>
+                        <div class="info-fields">
+                            <div class="field-group">
+                                <label>Full Name</label>
+                                <input type="text" value="Alex Rodriguez" readonly>
+                                <button class="edit-field-btn">✏️</button>
+                            </div>
+                            <div class="field-group">
+                                <label>Email</label>
+                                <input type="email" value="alex.rodriguez@email.com" readonly>
+                                <button class="edit-field-btn">✏️</button>
+                            </div>
+                            <div class="field-group">
+                                <label>Phone</label>
+                                <input type="tel" value="+1 (555) 123-4567" readonly>
+                                <button class="edit-field-btn">✏️</button>
                             </div>
                         </div>
-                        <button class="btn-secondary" onclick="openEditProfileModal()">Edit Profile</button>
                     </div>
 
-                    <!-- Favorites Section -->
-                    <div class="favorites-section">
-                        <h2>Favorite Videos</h2>
-                        <div class="video-grid" id="favorites-grid">
-                            <!-- Favorite videos will be loaded here -->
+                    <div class="info-card">
+                        <h3>Fitness Profile</h3>
+                        <div class="info-fields">
+                            <div class="field-group">
+                                <label>Age</label>
+                                <input type="number" value="28" readonly>
+                                <button class="edit-field-btn">✏️</button>
+                            </div>
+                            <div class="field-group">
+                                <label>Height</label>
+                                <input type="text" value="5'10\" (178 cm)" readonly>
+                                <button class="edit-field-btn">✏️</button>
+                            </div>
+                            <div class="field-group">
+                                <label>Weight</label>
+                                <input type="text" value="175 lbs (79 kg)" readonly>
+                                <button class="edit-field-btn">✏️</button>
+                            </div>
+                            <div class="field-group">
+                                <label>Fitness Goals</label>
+                                <textarea readonly>Build muscle mass, improve endurance, maintain healthy weight</textarea>
+                                <button class="edit-field-btn">✏️</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Preferences</h3>
+                        <div class="info-fields">
+                            <div class="field-group">
+                                <label>Preferred Workout Types</label>
+                                <div class="preference-tags">
+                                    <span class="tag">Strength Training</span>
+                                    <span class="tag">HIIT</span>
+                                    <span class="tag">Cardio</span>
+                                </div>
+                                <button class="edit-field-btn">✏️</button>
+                            </div>
+                            <div class="field-group">
+                                <label>Workout Frequency</label>
+                                <input type="text" value="5-6 days per week" readonly>
+                                <button class="edit-field-btn">✏️</button>
+                            </div>
+                            <div class="field-group">
+                                <label>Available Equipment</label>
+                                <div class="preference-tags">
+                                    <span class="tag">Gym Access</span>
+                                    <span class="tag">Dumbbells</span>
+                                    <span class="tag">Resistance Bands</span>
+                                </div>
+                                <button class="edit-field-btn">✏️</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
 
-    <!-- Edit Profile Modal -->
-    <div id="edit-profile-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeEditProfileModal()">&times;</span>
-            <h2>Edit Profile</h2>
-            <form id="edit-profile-form">
-                <input type="text" id="edit-full-name" placeholder="Full Name" required>
-                <textarea id="edit-bio" placeholder="Bio" rows="3"></textarea>
-                <input type="url" id="edit-avatar" placeholder="Avatar URL">
-                <button type="submit" class="btn-primary">Save Changes</button>
-            </form>
+            <!-- Achievements Tab -->
+            <div id="achievements-tab" class="tab-content">
+                <div class="achievements-grid">
+                    <div class="achievement-card unlocked">
+                        <div class="achievement-icon">🏋️</div>
+                        <h4>First Workout</h4>
+                        <p>Completed your first workout session</p>
+                        <span class="achievement-date">Jan 15, 2024</span>
+                    </div>
+                    <div class="achievement-card unlocked">
+                        <div class="achievement-icon">🔥</div>
+                        <h4>Streak Master</h4>
+                        <p>Maintained a 7-day workout streak</p>
+                        <span class="achievement-date">Feb 20, 2024</span>
+                    </div>
+                    <div class="achievement-card unlocked">
+                        <div class="achievement-icon">💪</div>
+                        <h4>Strength Builder</h4>
+                        <p>Completed 50 strength training sessions</p>
+                        <span class="achievement-date">Mar 10, 2024</span>
+                    </div>
+                    <div class="achievement-card unlocked">
+                        <div class="achievement-icon">🏃</div>
+                        <h4>Cardio Champion</h4>
+                        <p>Burned 10,000 calories through cardio</p>
+                        <span class="achievement-date">Apr 5, 2024</span>
+                    </div>
+                    <div class="achievement-card unlocked">
+                        <div class="achievement-icon">⏱️</div>
+                        <h4>Consistency King</h4>
+                        <p>Worked out for 30 consecutive days</p>
+                        <span class="achievement-date">May 15, 2024</span>
+                    </div>
+                    <div class="achievement-card unlocked">
+                        <div class="achievement-icon">🏆</div>
+                        <h4>Goal Crusher</h4>
+                        <p>Achieved your first fitness goal</p>
+                        <span class="achievement-date">Jun 1, 2024</span>
+                    </div>
+                    <div class="achievement-card locked">
+                        <div class="achievement-icon">🌟</div>
+                        <h4>Elite Athlete</h4>
+                        <p>Reach advanced fitness level</p>
+                        <span class="achievement-progress">2,450 / 3,000 XP</span>
+                    </div>
+                    <div class="achievement-card locked">
+                        <div class="achievement-icon">👑</div>
+                        <h4>Fitness Legend</h4>
+                        <p>Complete 500 workout sessions</p>
+                        <span class="achievement-progress">127 / 500</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Tab -->
+            <div id="history-tab" class="tab-content">
+                <div class="history-filters">
+                    <select id="history-period">
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                        <option value="year">This Year</option>
+                        <option value="all">All Time</option>
+                    </select>
+                    <select id="history-type">
+                        <option value="all">All Workouts</option>
+                        <option value="strength">Strength</option>
+                        <option value="cardio">Cardio</option>
+                        <option value="yoga">Yoga</option>
+                        <option value="hiit">HIIT</option>
+                    </select>
+                </div>
+
+                <div class="workout-history">
+                    <div class="history-item">
+                        <div class="history-date">Dec 15, 2024</div>
+                        <div class="history-workout">
+                            <div class="workout-icon">💪</div>
+                            <div class="workout-details">
+                                <h4>Upper Body Strength</h4>
+                                <span>45 min • 320 calories</span>
+                            </div>
+                            <div class="workout-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-date">Dec 14, 2024</div>
+                        <div class="history-workout">
+                            <div class="workout-icon">🏃</div>
+                            <div class="workout-details">
+                                <h4>HIIT Cardio Blast</h4>
+                                <span>30 min • 280 calories</span>
+                            </div>
+                            <div class="workout-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-date">Dec 13, 2024</div>
+                        <div class="history-workout">
+                            <div class="workout-icon">🧘</div>
+                            <div class="workout-details">
+                                <h4>Yoga Flow</h4>
+                                <span>40 min • 150 calories</span>
+                            </div>
+                            <div class="workout-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-date">Dec 12, 2024</div>
+                        <div class="history-workout">
+                            <div class="workout-icon">💪</div>
+                            <div class="workout-details">
+                                <h4>Lower Body Power</h4>
+                                <span>50 min • 350 calories</span>
+                            </div>
+                            <div class="workout-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-content">
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>Notifications</h3>
+                        <div class="setting-item">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <div class="setting-info">
+                                <span>Workout Reminders</span>
+                                <p>Get notified about scheduled workouts</p>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <div class="setting-info">
+                                <span>Progress Updates</span>
+                                <p>Weekly progress summaries</p>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <div class="setting-info">
+                                <span>Achievement Alerts</span>
+                                <p>Celebrate your milestones</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Privacy</h3>
+                        <div class="setting-item">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <div class="setting-info">
+                                <span>Profile Visibility</span>
+                                <p>Make your profile visible to other users</p>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <div class="setting-info">
+                                <span>Share Progress</span>
+                                <p>Allow others to see your workout progress</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Account</h3>
+                        <button class="btn-secondary">Change Password</button>
+                        <button class="btn-secondary">Download Data</button>
+                        <button class="btn-danger">Delete Account</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <footer class="footer">
+    <!-- Progress Charts -->
+    <section class="progress-charts-section">
         <div class="container">
-            <p>&copy; 2025 FitHub. All rights reserved.</p>
+            <h2>Fitness Progress</h2>
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Workout Frequency</h3>
+                    <div class="chart-placeholder">
+                        <div class="chart-line">
+                            <svg viewBox="0 0 300 150">
+                                <path d="M0,100 Q50,80 100,60 T200,40 T300,30" stroke="#b066ff" stroke-width="3" fill="none"/>
+                                <circle cx="0" cy="100" r="4" fill="#b066ff"/>
+                                <circle cx="50" cy="80" r="4" fill="#b066ff"/>
+                                <circle cx="100" cy="60" r="4" fill="#b066ff"/>
+                                <circle cx="150" cy="50" r="4" fill="#b066ff"/>
+                                <circle cx="200" cy="40" r="4" fill="#b066ff"/>
+                                <circle cx="250" cy="35" r="4" fill="#b066ff"/>
+                                <circle cx="300" cy="30" r="4" fill="#b066ff"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Calories Burned</h3>
+                    <div class="chart-placeholder">
+                        <div class="chart-bar">
+                            <div class="bar" style="height: 80%; background: linear-gradient(to top, #6a0dad, #b066ff);"></div>
+                            <div class="bar" style="height: 65%; background: linear-gradient(to top, #6a0dad, #b066ff);"></div>
+                            <div class="bar" style="height: 90%; background: linear-gradient(to top, #6a0dad, #b066ff);"></div>
+                            <div class="bar" style="height: 75%; background: linear-gradient(to top, #6a0dad, #b066ff);"></div>
+                            <div class="bar" style="height: 85%; background: linear-gradient(to top, #6a0dad, #b066ff);"></div>
+                            <div class="bar" style="height: 70%; background: linear-gradient(to top, #6a0dad, #b066ff);"></div>
+                            <div class="bar" style="height: 95%; background: linear-gradient(to top, #6a0dad, #b066ff);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </section>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script src="{{ url_for('static', filename='profile.js') }}"></script>
 </body>
 </html>
